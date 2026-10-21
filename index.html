@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Finance Tracker</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <header class="app-header">
+      <h1>Personal Finance Tracker</h1>
+      <p class="tagline">Record what comes in and what goes out. Your data stays in this browser.</p>
+    </header>
+
+    <main class="layout">
+
+      <!-- LEFT: form for adding a transaction -->
+      <section class="panel add-panel" aria-labelledby="add-heading">
+        <h2 id="add-heading">Add a transaction</h2>
+
+        <form id="transaction-form" novalidate>
+          <div class="field" role="radiogroup" aria-labelledby="type-label">
+            <span id="type-label" class="field-label">Type</span>
+            <div class="type-toggle">
+              <label class="toggle-option">
+                <input type="radio" name="type" value="expense" checked>
+                <span>Expense</span>
+              </label>
+              <label class="toggle-option">
+                <input type="radio" name="type" value="income">
+                <span>Income</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="description">Description</label>
+            <input id="description" name="description" type="text" maxlength="60" placeholder="For example, Weekly groceries" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="amount">Amount (&#8377;)</label>
+            <input id="amount" name="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00">
+          </div>
+
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category"></select>
+          </div>
+
+          <div class="field">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date">
+          </div>
+
+          <button type="submit" class="button-primary">Add transaction</button>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- RIGHT: summary, breakdown and the list of transactions -->
+      <div class="results">
+
+        <section class="panel summary-panel" aria-labelledby="summary-heading">
+          <div class="panel-top">
+            <h2 id="summary-heading">Summary</h2>
+            <div class="filters">
+              <div class="field-inline">
+                <label for="filter-month">Month</label>
+                <select id="filter-month"></select>
+              </div>
+              <div class="field-inline">
+                <label for="filter-category">Category</label>
+                <select id="filter-category"></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="balance-block">
+            <p class="balance-label">Balance</p>
+            <p id="total-balance" class="balance-value">&#8377;0.00</p>
+          </div>
+
+          <dl class="flow">
+            <div class="flow-item">
+              <dt>Income</dt>
+              <dd id="total-income" class="income">&#8377;0.00</dd>
+            </div>
+            <div class="flow-item">
+              <dt>Expenses</dt>
+              <dd id="total-expenses" class="expense">&#8377;0.00</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel" aria-labelledby="breakdown-heading">
+          <h2 id="breakdown-heading">Where the money went</h2>
+          <ul id="breakdown-list" class="breakdown"></ul>
+          <p id="breakdown-empty" class="empty" hidden>No expenses to show for this selection.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="transactions-heading">
+          <div class="panel-top">
+            <h2 id="transactions-heading">Transactions</h2>
+            <p id="transaction-count" class="muted"></p>
+          </div>
+          <ul id="transaction-list" class="transactions"></ul>
+          <p id="transactions-empty" class="empty" hidden>Nothing here yet. Add your first transaction using the form.</p>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <p>Saved in your browser only. Clearing your browser data will remove it.</p>
+      <button type="button" id="reset-button" class="button-link">Reset to sample data</button>
+    </footer>
+  </div>
+
+  <!-- Order matters: finance.js must load before app.js -->
+  <script src="js/finance.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

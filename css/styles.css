@@ -1,0 +1,442 @@
+/* ==========================================================
+   Personal Finance Tracker, styles
+   Colours and sizes are defined once below, then reused.
+   ========================================================== */
+
+:root {
+  --paper: #f3f6f7;
+  --surface: #ffffff;
+  --ink: #14213d;
+  --muted: #5a6577;
+  --line: #d8e0e6;
+  --accent: #2c3dbd;
+  --accent-dark: #212f94;
+  --income: #0a7556;
+  --expense: #b0274c;
+  --focus: #2c3dbd;
+
+  --radius: 10px;
+  --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, p, ul, dl, dd {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.app {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 20px 40px;
+}
+
+/* ---------- Header ---------- */
+
+.app-header {
+  margin-bottom: 28px;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+/* ---------- Layout ---------- */
+
+.layout {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (min-width: 880px) {
+  .layout {
+    grid-template-columns: 320px 1fr;
+  }
+
+  .add-panel {
+    position: sticky;
+    top: 20px;
+  }
+}
+
+.results {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.panel h2 {
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.panel-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Form ---------- */
+
+.add-panel h2 {
+  margin-bottom: 16px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+label,
+.field-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #b9c4cf;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+input::placeholder {
+  color: #8a94a3;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.type-toggle {
+  display: flex;
+}
+
+.toggle-option {
+  position: relative;
+  flex: 1;
+  margin: 0;
+  font-weight: 600;
+}
+
+.toggle-option input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.toggle-option span {
+  display: block;
+  padding: 9px 12px;
+  border: 1px solid #b9c4cf;
+  text-align: center;
+  background: #fff;
+}
+
+.toggle-option:first-of-type span {
+  border-radius: 8px 0 0 8px;
+}
+
+.toggle-option:last-of-type span {
+  border-radius: 0 8px 8px 0;
+  border-left: 0;
+}
+
+.toggle-option input:checked + span {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.toggle-option input:focus-visible + span {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.button-primary {
+  width: 100%;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  background: var(--accent-dark);
+}
+
+.status {
+  min-height: 1.5em;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--income);
+}
+
+.status.is-error {
+  color: var(--expense);
+}
+
+/* ---------- Summary ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.field-inline {
+  min-width: 150px;
+}
+
+.field-inline select {
+  padding: 8px 10px;
+}
+
+.balance-block {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.balance-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.balance-value {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.balance-value.is-negative {
+  color: var(--expense);
+}
+
+.flow {
+  display: flex;
+  gap: 40px;
+  padding-top: 16px;
+}
+
+.flow-item dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.flow-item dd {
+  font-size: 1.35rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.income {
+  color: var(--income);
+}
+
+.expense {
+  color: var(--expense);
+}
+
+/* ---------- Breakdown bars ---------- */
+
+.breakdown {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+}
+
+.breakdown-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.breakdown-amount {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-track {
+  height: 10px;
+  border-radius: 5px;
+  background: #e6ecf0;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--expense);
+  transition: width 0.3s ease;
+}
+
+/* ---------- Transactions ---------- */
+
+.transactions {
+  display: grid;
+}
+
+.transaction-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.transaction-row:first-child {
+  border-top: 0;
+}
+
+.transaction-main {
+  display: grid;
+  min-width: 0;
+}
+
+.transaction-title {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.transaction-meta {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.transaction-amount {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.button-delete {
+  padding: 6px 12px;
+  border: 1px solid #c9d2db;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--expense);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.button-delete:hover {
+  background: #fbeef2;
+  border-color: var(--expense);
+}
+
+.empty {
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+
+.app-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.button-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 520px) {
+  .app {
+    padding: 20px 14px 32px;
+  }
+
+  .app-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .balance-value {
+    font-size: 2.2rem;
+  }
+
+  .transaction-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .button-delete {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-fill {
+    transition: none;
+  }
+}

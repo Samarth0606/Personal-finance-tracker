@@ -1,0 +1,9 @@
+{
+  "name": "personal-finance-tracker",
+  "version": "1.0.0",
+  "description": "A simple personal finance tracker used to learn Claude Code.",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}
